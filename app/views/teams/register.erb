@@ -1,0 +1,13 @@
+<% if current_user.admin == 1 %>
+<%= form_for(Team.new) do |a| %>
+    <li> <%= a.label :name %> 
+     <%= a.text_field :name %> </li>
+     <li><%= a.submit %></li>
+     <%end%>
+<% else %>
+<%= form_for :user do |f| %>
+    <h1> From the Dropdown menu please select your robotics team </h1>
+    <%= f.collection_select :team_id, @teams, :id, :name, include_blank: true %> <br>
+     <%= f.submit "Select Team"%>
+     <% end %>
+ <% end %>

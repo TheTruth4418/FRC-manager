@@ -1,0 +1,7 @@
+<p> You signed up as an Admin, please put your team name below! </p>
+<%= form_for(Team.new) do |a| %>
+    <%= a.label :team_Name%> 
+     <%= a.text_field :name%><br>
+     <%= a.submit %>
+     <%end%>
+<a href="/home"> Go Back</a>

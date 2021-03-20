@@ -1,0 +1,36 @@
+<style>
+.col {
+  width: 50%;
+  display: table-cell;
+  padding: 16px;
+  border: solid black 2px;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.row {
+  margin: auto;
+  display: table;
+  width: 80%;
+}
+</style>
+
+<div class="row">
+  <div class="col" id="progression" style="background-color:#aaa">
+    <p> Tasks in progess: </p>
+    <p> Tasks finished: </p>
+    
+  </div>
+
+  <div class="col" id="tasks" style="background-color:#bbb">
+    <p> Task list </p>
+    <% @tasks.each do |x| %>
+      <li><%=link_to "#{x.name}", team_task_url(@team,x)%></li>
+  <%end%>
+    <%= link_to "Assign Task", new_team_task_url %>
+    </div>
+</div>
+
+<%=link_to "Go Back", team_url(@team) %>
