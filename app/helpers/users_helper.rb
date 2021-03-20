@@ -7,6 +7,10 @@ module UsersHelper
          params.require(:user).permit(:username, :password, :admin)
       end
 
+      def team_params
+        params.require(:team).permit(:name, :admin_id)
+      end
+
       def logged_in?
         !!session[:user_id]
       end
