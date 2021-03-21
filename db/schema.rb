@@ -41,10 +41,10 @@ ActiveRecord::Schema.define(version: 2021_03_16_044828) do
 
   create_table "scouts", force: :cascade do |t|
     t.integer "participant_id"
-    t.string "robot"
-    t.string "autonomus"
-    t.string "scoring"
-    t.string "climbing"
+    t.integer "robot"
+    t.integer "autonomus"
+    t.integer "scoring"
+    t.integer "climbing"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

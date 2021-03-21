@@ -6,5 +6,5 @@ class Event < ActiveRecord::Base
 
     belongs_to :confirm
     belongs_to :team
-    has_many :users, through: :confirmation
+    has_many :users, through: :confirm
 end

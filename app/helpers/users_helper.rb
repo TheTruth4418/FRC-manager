@@ -4,11 +4,11 @@ module UsersHelper
       end 
 
       def user_params
-         params.require(:user).permit(:username, :password, :admin)
+         params.require(:user).permit(:id,:username, :password, :admin)
       end
 
       def team_params
-        params.require(:team).permit(:name, :admin_id)
+        params.require(:team).permit(:id,:name, :admin_id)
       end
 
       def logged_in?
@@ -32,18 +32,17 @@ module UsersHelper
       end
 
       def event_params
-        params.require(:event).permit(:name, :date, :location, :team_id)
+        params.require(:event).permit(:id,:name, :date, :location, :team_id, :confirm_id)
      end
 
-     def opponent_params
-      params.require(:opponent).permit(
+     def participant_params
+      params.require(:participant).permit(
+        :id,
         :name,
         :team_number,
-        :robot_complete,
-        :autonomus,
-        :scoring,
-        :climb,
-        :event_id)
+        :event_id,
+        :scout_id
+        )
      end
 
      def task_params 
@@ -54,6 +53,25 @@ module UsersHelper
         :complete,
         :user_id,
         :team_id
+      )
+     end
+
+     def scout_params
+      params.require(:scout).permit(
+        :id,
+        :robot,
+        :autonomus,
+        :scoring,
+        :climbing
+      )
+     end
+
+     def confirm_params
+      params.require(:confirm).permit(
+        :id,
+        :grades,
+        :user_id,
+        :event_id
       )
      end
 
