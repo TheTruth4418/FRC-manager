@@ -7,6 +7,21 @@
 </div>
 
 <div> 
-    <h3> Team </h3>
-    <p><%=@user.team_id == nil ? "Not on team" : "Team"%> </p>
+    <h3> Your Team </h3>
+    <%if on_team?(@user) %>
+        <%= link_to "#{@team.name}'s portal", team_url(@team)%>
+    <%else%>
+        <p> No Team </p>
+    <%end%>
+</div>
+
+<div>
+    <h3> Tasks </h3>
+    <% if @user.tasks.length != 0 %>
+        <%@user.tasks.each do |task|%>
+            <li> <%= link_to "#{task.name}", task_url(task)%> </li>
+        <%end%>
+    <%else%>
+        <p> You have no outstanding tasks </p>
+    <%end%>
 </div>
