@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :participant
     resources :scout
   end
-  resources :sessions, only: [:create, :destroy]
+  resources :sessions, only: [:new,:create,:destroy]
 
   root 'users#welcome'
 
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
   post '/logout' => 'sessions#destroy'
 
-  get '/home', to: 'users#home'
+  get '/home', to: 'users#show'
   get '/edit_username', to: 'users#edit'
 
   get '/join', to: 'teams#join'

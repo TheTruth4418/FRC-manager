@@ -1,2 +1,12 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<%= "Currently logged in: #{@user.username}" %>
+<div>
+    <h1> User Home </h1>
+    <p> Username: <%= @user.username %> </p>
+    <%= link_to "Account Settings", edit_user_url(@user)%><br>
+    <%= link_to "Log out", session_url(@user)%>
+</div>
+
+<div> 
+    <h3> Team </h3>
+    <p><%=@user.team_id == nil ? "Not on team" : "Team"%> </p>
+</div>

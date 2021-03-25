@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  include UsersHelper
+
   def new
   end
 
@@ -6,10 +9,12 @@ class UsersController < ApplicationController
     @user = User.create!(user_params)
     if @user
       session[:user_id]=@user.id
-      #redirect_to "/login"
+      redirect_to "/login"
       flash[:notice] = 'Account created, please login!'
+    else
+    redirect_to "/signup"
+    flash[:notice] = 'Account couldnt be created, please try again.'
     end
-    #error validation
   end
 
   def update
@@ -22,7 +27,7 @@ class UsersController < ApplicationController
   def show
     if logged_in?
       @user = current_user
-      @team = @user.team
+      @team = current_team
       @status = status(@user)
     else
       redirect_to "/"
