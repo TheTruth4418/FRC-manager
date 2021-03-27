@@ -11,7 +11,7 @@
     <%if on_team?(@user) %>
         <%= link_to "#{@team.name}'s portal", team_url(@team)%>
     <%else%>
-        <p> No Team </p>
+        <%= link_to "Link a team to your account!", new_team_url%>
     <%end%>
 </div>
 
@@ -22,6 +22,6 @@
             <li> <%= link_to "#{task.name}", task_url(task)%> </li>
         <%end%>
     <%else%>
-        <p> You have no outstanding tasks </p>
+        <p> No tasks at the moment </p>
     <%end%>
 </div>

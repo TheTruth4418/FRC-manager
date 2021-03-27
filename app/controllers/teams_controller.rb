@@ -1,15 +1,23 @@
 class TeamsController < ApplicationController
+
+  include UsersHelper
+
   def new
+    @teams = Team.all.by_name
   end
 
   def create
-    @team = Team.create!(team_params)
     @user = current_user
-    @user.update(:team_id => @team.id)
-    if @team
-      render "creation"
+    if status(@user) == "admin"
+      @team = Team.create!(team_params)
+      @user.update(:team_id => @team.id)
+      #error validation
+    else
+      @user.update(:team_id => params[:team][:id])
+      @team = current_team
+      #error validation
     end
-    #error validation in forms
+    render "show"
   end
 
   def update
@@ -23,7 +31,6 @@ class TeamsController < ApplicationController
       @team.users.students.each do |x|
           @students << x.username
       end
-    render :layout => "users"
   end
 
   def edit
