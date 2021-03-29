@@ -5,9 +5,10 @@ class User < ActiveRecord::Base
 
     has_one :team
     has_many :tasks
-    belongs_to :confirm, optional: true
+    has_many :confirms
     has_many :events, through: :confirm
 
     scope :admin, -> { where(admin: 1) }
     scope :students, -> { where(admin: 0) }
+    scope :by_username, -> { order(username: :asc) }
 end

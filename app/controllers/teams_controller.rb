@@ -27,10 +27,9 @@ class TeamsController < ApplicationController
     @user = current_user
     @team = current_team
     @admin = @team.users.admin.first.username
-    @students = [] 
-      @team.users.students.each do |x|
-          @students << x.username
-      end
+    @students = @team.users.students
+    @events = @team.events
+    @tasks = @team.tasks
   end
 
   def edit
@@ -51,3 +50,11 @@ class TeamsController < ApplicationController
       render "success"
   end
 end
+
+# @team.users pulls up all the users for the team
+# Admin CRUD team students R team
+# Events can be viewed by the students however admin can create an event
+# Admin can fully CRUD a task but a student can only update and read a task
+# Admins can CRUD Opponents, Users can RU opponents scout reports
+# Confirms are CRUD by admins while students can CRU a confirm, confirming their event participation
+# change the url names later on

@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 2021_03_16_044828) do
     t.string "date"
     t.string "location"
     t.integer "team_id"
-    t.integer "confirm_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -70,7 +69,6 @@ ActiveRecord::Schema.define(version: 2021_03_16_044828) do
     t.string "password_digest"
     t.integer "admin"
     t.integer "team_id"
-    t.integer "confirm_id"
     t.string "uid"
     t.string "provider"
     t.datetime "created_at", precision: 6, null: false

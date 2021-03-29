@@ -32,7 +32,7 @@ module UsersHelper
       end
 
       def event_params
-        params.require(:event).permit(:id,:name, :date, :location, :team_id, :confirm_id)
+        params.require(:event).permit(:id,:name, :date, :location, :team_id)
      end
 
      def participant_params
@@ -40,8 +40,7 @@ module UsersHelper
         :id,
         :name,
         :team_number,
-        :event_id,
-        :scout_id
+        :event_id
         )
      end
 

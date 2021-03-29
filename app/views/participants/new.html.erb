@@ -1,2 +1,9 @@
-<h1>Participants#new</h1>
-<p>Find me in app/views/participants/new.html.erb</p>
+<p> New Opponent form </p>
+<%= form_for [@event, @participant] do |a| %>
+    <%= a.label :team_name%> 
+     <%= a.text_field :name%><br>
+     <%= a.label :team_number%>
+     <%= a.text_field :team_number%><br>
+     <%= a.hidden_field :event_id, :value => @event.id %> 
+     <%= a.submit %>
+     <%end%>

@@ -1,2 +1,15 @@
-<h1>Participants#show</h1>
-<p>Find me in app/views/participants/show.html.erb</p>
+<div>
+<h3><%= "#{@participant.name}" %></h3><br>
+<%= "Team #{@participant.team_number}" %><br>
+</div>
+
+<div>
+    <h3> Scouting Data </h3>
+    <% if @scout %>
+        <p> Scout Data </p>
+    <%else%>
+        <%= link_to "Create Scouting Data for Team #{@participant.team_number}", new_event_scout_url(@event) %>
+    <%end%>
+</div>
+
+<%= link_to "Go back", event_url(@event) %>

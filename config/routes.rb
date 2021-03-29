@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   resources :teams, only: [:new, :create, :edit, :update, :show, :destroy]
   resources :tasks
   resources :events do
-    resources :confirm
-    resources :participant
-    resources :scout
+    resources :confirms
+    resources :participants
+    resources :scouts
   end
   resources :sessions, only: [:new,:create,:destroy]
 

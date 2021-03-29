@@ -1,4 +1,7 @@
 class EventsController < ApplicationController
+
+  include UsersHelper
+
   def new
     @team = current_team
     @event = @team.events.build
@@ -7,6 +10,7 @@ class EventsController < ApplicationController
   def create
     @team = current_team
     @event = Event.create!(event_params)
+    render "show"
   end
 
   def update
@@ -16,8 +20,9 @@ class EventsController < ApplicationController
   end
 
   def show
+    @team = current_team
     @event = Event.find_by_id(params[:id])
-    @opponents = @event.opponents
+    @participants = @event.participants
   end
 
   def edit

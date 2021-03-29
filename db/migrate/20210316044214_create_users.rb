@@ -5,7 +5,6 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :password_digest
       t.integer :admin
       t.integer :team_id
-      t.integer :confirm_id
       t.string :uid
       t.string :provider
 

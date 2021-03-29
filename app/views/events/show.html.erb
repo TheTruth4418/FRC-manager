@@ -1,2 +1,23 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+  <div>
+    <h3> Event Details</h3>
+    <%= "Event name: #{@event.name}"%><br>
+    <%= "Date: #{@event.date}" %><br>
+    <%= "Location: #{@event.location}" %><br>
+    <br>
+  </div>
+
+  <div>
+    <h3> Participants </h3>
+    <% @participants.each do |participant| %>
+        <li> <%=link_to "#{participant.name}", event_participant_url(@event,participant)%> </li>
+    <%end%>
+    <%= link_to "New Participant", new_event_participant_url(@event) %><br>
+  <div>
+
+  <div>
+  <%= link_to "Edit", edit_event_url(@event)%>
+    <%= form_tag event_url(@event), method: "delete" do %>
+        <%= submit_tag "Delete" %>
+      <% end %>
+  </div>
+<%=link_to "Go Back", team_url(@team)%>

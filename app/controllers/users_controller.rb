@@ -44,3 +44,5 @@ class UsersController < ApplicationController
   def welcome
   end
 end
+
+# if logged in redirect to the home

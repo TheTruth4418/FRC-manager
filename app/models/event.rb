@@ -4,7 +4,8 @@ class Event < ActiveRecord::Base
     validates :location, presence: true
     validates :team_id, presence:true
 
-    belongs_to :confirm
+    has_many :confirms
+    has_many :participants
     belongs_to :team
     has_many :users, through: :confirm
 end

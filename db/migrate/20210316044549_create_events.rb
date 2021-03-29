@@ -5,8 +5,6 @@ class CreateEvents < ActiveRecord::Migration[6.1]
       t.string :date
       t.string :location
       t.integer :team_id
-      t.integer :confirm_id
-
       t.timestamps
     end
   end
