@@ -3,4 +3,7 @@
 <%= "Assigned to: #{@user.username}" %><br>
 <%= "Status: #{@task.complete}" %><br>
 <%= link_to "Edit Task", edit_task_url(@task)%>
+<%= form_tag task_url(@task), method: "delete" do %>
+    <%= submit_tag "Delete" %>
+  <% end %>
 <%= link_to "Go Back", team_url(current_team)%>

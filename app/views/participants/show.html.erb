@@ -5,11 +5,13 @@
 
 <div>
     <h3> Scouting Data </h3>
-    <% if @scout %>
-        <p> Scout Data </p>
-    <%else%>
-        <%= link_to "Create Scouting Data for Team #{@participant.team_number}", new_event_scout_url(@event) %>
-    <%end%>
+    <%="Autonomous - #{@participant.autonomous}"%><br>
+    <%="Score? - #{scout(@participant.scoring)}" %><br>
+    <%="Climb? - #{scout(@participant.climbing)}" %><br>
+    <%= "Robot Complete? - #{scout(@participant.robot_status)}"%>
 </div>
 
+<%= form_tag event_participant_url(@participant), method: "delete" do %>
+    <%= submit_tag "Delete" %>
+  <% end %>
 <%= link_to "Go back", event_url(@event) %>

@@ -1,5 +1,7 @@
-<%="Scouting report for #{@participant.name}" %>
+<h3> New Scouting Data Form </h3>
 <%= form_for [@event,Scout.new] do |a| %>
+    <%= a.label :Team %>
+    <%= a.collection_select :participant_id, @participants, :id, :team_number, include_blank: true %><br>
     <%= a.label :Completed_robot? %>
     <%= a.check_box :robot %><br>
     <%= a.label :Scoring? %>
@@ -8,7 +10,6 @@
     <%= a.check_box :climbing? %><br>
     <%= a.label :Autonomous_Summary %><br>
     <%= a.text_area :autonomus%>
-     <%= a.hidden_field :participant_id, :value => @participant.id %> 
      <%= a.submit %>
      <%end%>
-     <%= link_to "Go Back", team_url(@team)%>
+     <%= link_to "Go Back", event_url(@event)%>

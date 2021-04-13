@@ -32,20 +32,11 @@ ActiveRecord::Schema.define(version: 2021_04_10_141859) do
   create_table "participants", force: :cascade do |t|
     t.string "name"
     t.integer "team_number"
-    t.integer "event_id"
-    t.integer "scout_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "scouts", force: :cascade do |t|
-    t.integer "participant_id"
-    t.integer "robot"
-    t.integer "autonomus"
+    t.integer "robot_status"
+    t.string "autonomous"
     t.integer "scoring"
     t.integer "climbing"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.integer "event_id"
   end
 
   create_table "tasks", force: :cascade do |t|

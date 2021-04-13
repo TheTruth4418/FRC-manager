@@ -23,7 +23,6 @@ class ParticipantsController < ApplicationController
     @team = current_team
     @participant = Participant.find_by_id(params[:id])
     @event = Event.find_by_id(params[:event_id])
-    @scout = @participant.scout
   end
 
   def edit
@@ -36,6 +35,7 @@ class ParticipantsController < ApplicationController
     @event = Event.find_by_id(params[:event_id])
     @participant = Participant.find_by_id(params[:id])
     @participant.destroy
+    redirect_to event_path(params[:event_id])
   end
 
   def index

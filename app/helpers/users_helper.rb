@@ -40,8 +40,16 @@ module UsersHelper
         :id,
         :name,
         :team_number,
+        :robot_status,
+        :autonomous,
+        :scoring,
+        :climbing,
         :event_id
         )
+     end
+
+     def scout(aspect) 
+      aspect == 0 ? "No" : "Yes"
      end
 
      def task_params 
@@ -52,17 +60,6 @@ module UsersHelper
         :complete,
         :user_id,
         :team_id
-      )
-     end
-
-     def scout_params
-      params.require(:scout).permit(
-        :id,
-        :participant_id,
-        :robot,
-        :autonomus,
-        :scoring,
-        :climbing
       )
      end
 

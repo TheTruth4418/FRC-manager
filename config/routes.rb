@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources :events do
     resources :confirms
     resources :participants
-    resources :scouts
   end
   resources :sessions, only: [:new,:create,:destroy]
 

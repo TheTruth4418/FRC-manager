@@ -11,11 +11,13 @@ class TasksController < ApplicationController
   def create
     @team = current_team
     @task = Task.create!(task_params)
+    @user = User.find_by_id(@task.user_id)
     @tasks = @team.tasks
     render "show"
   end
 
   def update
+    @team = current_team
     @task = Task.find_by_id(params[:id])
     @task.update!(task_params)
     @user = User.find_by_id(@task.user_id)
@@ -39,7 +41,7 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find_by_id(params[:id])
     @task.destroy
-    # return to the previous screen
+    redirect_to team_path(current_team)
   end
 
   def index
