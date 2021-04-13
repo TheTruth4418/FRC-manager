@@ -1,6 +1,10 @@
 class TasksController < ApplicationController
+
+  include UsersHelper
+
   def new
-    @task = current_user.team.tasks.build
+    @team = current_team
+    @task = @team.tasks.build
     @students = @team.users.students
   end
 
@@ -8,22 +12,26 @@ class TasksController < ApplicationController
     @team = current_team
     @task = Task.create!(task_params)
     @tasks = @team.tasks
-    #render "index"
+    render "show"
   end
 
   def update
     @task = Task.find_by_id(params[:id])
-    @task.update(task_params)
-    # render show
+    @task.update!(task_params)
+    @user = User.find_by_id(@task.user_id)
+    render "show"
   end
 
   def show
+    @team = current_team
     @task = Task.find_by_id(params[:id])
-    @user = User.find_by_id(params[:user_id])
+    @user = User.find_by_id(@task.user_id)
   end
 
   def edit
+    @team = current_team
     @task = Task.find_by_id(params[:id])
+    @user = User.find_by_id(@task.user_id)
     @students = @team.users.students
     #dont forget the task complete checkbox
   end

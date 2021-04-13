@@ -23,6 +23,7 @@ class EventsController < ApplicationController
     @team = current_team
     @event = Event.find_by_id(params[:id])
     @participants = @event.participants
+    @students = @team.users.students
   end
 
   def edit

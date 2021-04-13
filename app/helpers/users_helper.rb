@@ -58,6 +58,7 @@ module UsersHelper
      def scout_params
       params.require(:scout).permit(
         :id,
+        :participant_id,
         :robot,
         :autonomus,
         :scoring,
@@ -72,6 +73,11 @@ module UsersHelper
         :user_id,
         :event_id
       )
+     end
+
+     def confirmed?(event, user)
+      confirm = Confirm.find_by(event_id: event.id, user_id: user.id)
+      confirm ? "Confirm on file" : "No confirm on file"
      end
 
      def able(arg)

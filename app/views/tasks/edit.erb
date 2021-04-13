@@ -1,0 +1,14 @@
+<p> Edit the task </p>
+<%= form_for [@task] do |a| %>
+    <%= a.label :task_name%> 
+     <%= a.text_field :name%><br>
+     <%= a.label :user_id %>
+     <%= a.collection_select :user_id, @students, :id, :username, include_blank: true %> <br>
+     <%= a.label :task_description%><br>
+     <%= a.text_area :description %> <br>
+     <%= a.label :complete? %>
+    <%= a.check_box :complete %>
+     <%= a.hidden_field :team_id, :value => @team.id %> 
+     <%= a.submit %>
+     <%end%>
+<%= link_to "Go Back", task_url(@task)%>

@@ -15,6 +15,13 @@
   <div>
 
   <div>
+      <h3> Your Teams confirmed members </h3>
+      <% @students.each do |student| %>
+        <li><%="#{student.username}- #{  confirmed?(@event, student)}"%></li>
+    <%end%>
+  </div>
+
+  <div>
   <%= link_to "Edit", edit_event_url(@event)%>
     <%= form_tag event_url(@event), method: "delete" do %>
         <%= submit_tag "Delete" %>

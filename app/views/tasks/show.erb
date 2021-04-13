@@ -1,2 +1,6 @@
 <%= "Task: #{@task.name}" %><br>
-<%= "Description: #{@task.description}" %>
+<%= "Description: #{@task.description}" %><br>
+<%= "Assigned to: #{@user.username}" %><br>
+<%= "Status: #{@task.complete}" %><br>
+<%= link_to "Edit Task", edit_task_url(@task)%>
+<%= link_to "Go Back", team_url(current_team)%>
