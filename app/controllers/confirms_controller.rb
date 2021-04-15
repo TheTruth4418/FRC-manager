@@ -1,17 +1,20 @@
 class ConfirmsController < ApplicationController
+
+  include UsersHelper
+
   def new
     @user = current_user
     @team = current_team
-    @events = @team.events
     @event = Event.find_by_id(params[:event_id])
+    @students = @team.users.students
   end
 
   def create
     @user = current_user
     @team = current_team
-    @events = @team.events
     @event = Event.find_by_id(params[:event_id])
-    @confirm = Confirm.create!(confirm_id)
+    @confirm = Confirm.create!(confirm_params)
+    redirect_to event_path(@event)
   end
 
   def update

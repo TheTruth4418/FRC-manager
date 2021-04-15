@@ -52,6 +52,10 @@ module UsersHelper
       aspect == 0 ? "No" : "Yes"
      end
 
+     def passing(confirm)
+      confirm.grade == 0 ? "Not Qualified" : "Qualified"
+     end
+
      def task_params 
       params.require(:task).permit(
         :id,
@@ -74,7 +78,11 @@ module UsersHelper
 
      def confirmed?(event, user)
       confirm = Confirm.find_by(event_id: event.id, user_id: user.id)
-      confirm ? "Confirm on file" : "No confirm on file"
+      if confirm 
+        confirm.grades == 1 ? "Not Qualified" : "Qualified"
+      else
+        "No Confrirm on file"
+      end
      end
 
      def able(arg)

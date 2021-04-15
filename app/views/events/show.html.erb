@@ -9,8 +9,9 @@
   <div>
       <h3> Your Teams confirmed members </h3>
       <% @students.each do |student| %>
-        <li><%="#{student.username}- #{  confirmed?(@event, student)}"%></li>
-    <%end%>
+        <%="#{student.username} - #{confirmed?(@event,student)}"%><br>
+      <%end%>
+      <%= link_to "Confirm a new student",new_event_confirm_url(@event)%>
   </div>
 
   <div>

@@ -6,3 +6,4 @@
 #     https: false
 #   )
 # end
+Rack::MiniProfiler.config.position = 'bottom-right'

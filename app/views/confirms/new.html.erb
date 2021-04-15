@@ -1,0 +1,10 @@
+<%= "Confirm form for #{@event.name}"%>
+<%= form_for [@event, Confirm.new] do |a| %>
+    <%= a.label :Student %>
+    <%= a.collection_select :user_id, @students, :id, :username, include_blank: true %><br>
+    <%= a.label :Any_grades_below_60?%>
+    <%= a.check_box :grades%><br>
+    <%= a.hidden_field :event_id, :value => @event.id %>
+    <%= a.submit %>
+<%end%>
+<%= link_to "Go Back", event_path(@event) %>

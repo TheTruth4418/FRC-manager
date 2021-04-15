@@ -9,14 +9,19 @@ class EventsController < ApplicationController
 
   def create
     @team = current_team
+    @students = @team.users.students
     @event = Event.create!(event_params)
+    @participants = @event.participants
     render "show"
   end
 
   def update
     @team = current_team
-    @event = Event.update(event_params)
     @event = Event.find_by_id(params[:id])
+    @event.update(event_params)
+    @participants = @event.participants
+    @students = @team.users.students
+    render "show"
   end
 
   def show
@@ -33,7 +38,11 @@ class EventsController < ApplicationController
 
   def destroy
     @event = Event.find_by_id(params[:id])
+    @event.participants.each do |x|
+      x.destroy
+    end
     @event.destroy
+    redirect_to team_path(current_team)
   end
 
   def index

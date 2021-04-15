@@ -11,7 +11,7 @@ class ParticipantsController < ApplicationController
   def create
     @event = Event.find_by_id(params[:event_id])
     @participant = Participant.create!(participant_params)
-    render "show"
+    redirect_to event_path(params[:event_id])
   end
 
   def update
@@ -32,14 +32,14 @@ class ParticipantsController < ApplicationController
 
   def destroy
     @team = current_team
-    @event = Event.find_by_id(params[:event_id])
     @participant = Participant.find_by_id(params[:id])
+    @event = @participant.event
     @participant.destroy
-    redirect_to event_path(params[:event_id])
+    redirect_to event_path(@event.id)
   end
 
   def index
-    @event = Evnet.find_by_id(params[:event_id])
+    @event = Event.find_by_id(params[:event_id])
     @participants = @event.participants
   end
 end
