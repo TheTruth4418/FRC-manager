@@ -93,4 +93,8 @@ module UsersHelper
       end
      end
 
+     def find_confirm(event,user)
+      confirm = Confirm.find_by(event_id: event.id, user_id: user.id)
+     end
+
 end

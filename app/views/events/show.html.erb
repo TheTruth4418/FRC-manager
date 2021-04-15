@@ -4,21 +4,22 @@
     <%= "Date: #{@event.date}" %><br>
     <%= "Location: #{@event.location}" %><br>
     <br>
+    <%= link_to "Edit", edit_event_url(@event)%>
+    <%= form_tag event_url(@event), method: "delete" do %>
+        <%= submit_tag "Delete" %>
+      <% end %>
   </div>
 
   <div>
       <h3> Your Teams confirmed members </h3>
       <% @students.each do |student| %>
-        <%="#{student.username} - #{confirmed?(@event,student)}"%><br>
+        <% if find_confirm(@event,student)%>
+          <%=link_to "#{student.username} - #{confirmed?(@event,student)}",event_confirm_url(@event,find_confirm(@event,student))%><br>
+        <%else%>
+          <%="#{student.username} - #{confirmed?(@event,student)}"%><br>
+        <%end%>
       <%end%>
       <%= link_to "Confirm a new student",new_event_confirm_url(@event)%>
-  </div>
-
-  <div>
-  <%= link_to "Edit", edit_event_url(@event)%>
-    <%= form_tag event_url(@event), method: "delete" do %>
-        <%= submit_tag "Delete" %>
-      <% end %>
   </div>
 
   <div>

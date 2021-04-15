@@ -18,19 +18,16 @@ class ConfirmsController < ApplicationController
   end
 
   def update
-    @user = current_user
-    @team = current_team
-    @events = @team.events
-    @event = Event.find_by_id(params[:event_id])
-    @confirm = Confirm.update!(confirm_id)
+    @confirm = Confirm.find_by_id(params[:id])
+    @confirm = Confirm.update(confirm_params)
+    redirect_to event_path(params[:event_id])
   end
 
   def edit
-    @user = current_user
-    @team = current_team
-    @events = @team.events
-    @event = Event.find_by_id(params[:event_id])
     @confirm = Confirm.find_by_id(params[:id])
+    @user = @confirm.user
+    @team = current_team
+    @event = @confirm.event
   end
 
   def index
@@ -41,12 +38,18 @@ class ConfirmsController < ApplicationController
     @confirms = @event.confirms
   end
 
+  def show
+    @confirm = Confirm.find_by_id(params[:id])
+    @user = @confirm.user
+    @event = @confirm.event
+    @status = @confirm.grades == 0 ? "meets " : "does not meet "
+  end
+
   def destroy
-    @user = current_user
-    @team = current_team
-    @events = @team.events
+    @user = User.find_by_id(params[:user_id])
     @event = Event.find_by_id(params[:event_id])
-    #destroy the confirm
+    @confirm = find_confirm(@event,@user)
+    @confirm.destroy
   end
 
 end

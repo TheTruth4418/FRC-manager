@@ -1,2 +1,9 @@
-<h1>Confirm#edit</h1>
-<p>Find me in app/views/confirm/edit.html.erb</p>
+<%= "#{@user.username}'s status for #{@event.name}"%>
+<%= form_for [@event, @confirm] do |a| %>
+    <%= a.hidden_field :user_id, :value => @user.id %><br>
+    <%= a.label :Any_grades_below_60?%>
+    <%= a.check_box :grades%><br>
+    <%= a.hidden_field :event_id, :value => @event.id %>
+    <%= a.submit %>
+<%end%>
+<%= link_to "Go Back", event_path(@event) %>

@@ -41,6 +41,9 @@ class EventsController < ApplicationController
     @event.participants.each do |x|
       x.destroy
     end
+    @event.confirms.each do |x|
+      x.destroy
+    end
     @event.destroy
     redirect_to team_path(current_team)
   end

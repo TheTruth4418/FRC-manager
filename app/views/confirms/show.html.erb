@@ -1,2 +1,3 @@
-<h1>Confirm#show</h1>
-<p>Find me in app/views/confirm/show.html.erb</p>
+<%= "#{@user.username}'s grades " + @status + "the qualifications for #{@event.name}" %><br>
+<%= link_to "Edit Confirm Status", edit_event_confirm_url(@event,@confirm)%><br>
+<%= link_to "Go Back",event_url(@event)%>
