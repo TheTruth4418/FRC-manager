@@ -3,7 +3,9 @@
     <h1> User Home </h1>
     <p> Username: <%= @user.username %> </p>
     <%= link_to "Account Settings", edit_user_url(@user)%><br>
-    <%= link_to "Log out", session_url(@user)%>
+    <%= form_tag session_url(session[:user_id]), method: "delete" do %>
+        <%= submit_tag "Log out" %>
+      <% end %>
 </div>
 
 <div> 

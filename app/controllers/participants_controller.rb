@@ -16,7 +16,9 @@ class ParticipantsController < ApplicationController
 
   def update
     @participant = Participant.find_by_id(params[:id])
+    @event = Event.find_by_id(params[:event_id])
     @participant.update!(participant_params)
+    redirect_to event_participant_path(@event,@participant)
   end
 
   def show
@@ -26,8 +28,8 @@ class ParticipantsController < ApplicationController
   end
 
   def edit
-    @Participant = Participant.find_by_id(params[:id])
-    @event = @participant.event
+    @participant = Participant.find_by_id(params[:id])
+    @event = Event.find_by_id(params[:event_id])
   end
 
   def destroy
