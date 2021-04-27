@@ -1,4 +1,9 @@
-<h3> Until you belong to a team you may freely edit whether you are going to be an admin for a team or not!</p>
+<% flash.each do |type, msg| %>
+    <div class="alert alert-info">
+      <%= msg %>
+    </div>
+  <% end %>
+<h4> Until you belong to a team you may freely edit whether you are going to be an admin for a team or not!</h4>
 <%= form_for(@user) do |a| %>
     <%= a.label :admin? %>
     <%= a.check_box :admin %><br>

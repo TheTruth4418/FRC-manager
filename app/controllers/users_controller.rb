@@ -47,6 +47,10 @@ class UsersController < ApplicationController
   def join
     @user = current_user
     @teams = Team.all.by_name
+    if @user.admin == nil
+      redirect_to edit_user_path(@user)
+      flash[:notice] = 'Need to set admin status first!'
+    end
   end
 
   def register

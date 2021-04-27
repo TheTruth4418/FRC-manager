@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   post '/logout' => 'sessions#destroy'
 
   get '/home', to: 'users#show'
-  get '/edit_username', to: 'users#edit'
 
   get '/join', to: 'users#join'
   post '/join', to: 'users#register'

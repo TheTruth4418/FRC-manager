@@ -20,11 +20,21 @@
 </div>
 
 <div>
-    <h3> Tasks </h3>
-    <% @tasks.each do |task| %>
-        <li> <%=link_to "#{task.name}", task_url(task)%> </li>
-    <%end%>
-    <%= link_to "New Task", new_task_url %>
+    <h3>Tasks</h3>
+    <div>
+      <h5> In Progress </h5>
+      <% @tasks.each do |task| %>
+          <li> <%=link_to "#{task.name}", task_url(task)%> </li>
+      <%end%>
+      <%= link_to "New Task", new_task_url %>
+    </div>
+
+    <div>
+        <h5> Complete </h5>
+        <% @tasks.completed.each do |task| %>
+            <li> <%=link_to "#{task.name}", task_url(task)%> </li>
+        <%end%>
+    </div>
 </div>
 <%=link_to "Go Back", user_url(@user)%>
 <%= form_tag team_url(@team), method: "delete" do %>
