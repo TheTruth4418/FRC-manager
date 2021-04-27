@@ -10,6 +10,6 @@
     <h1> From the Dropdown menu please select your robotics team </h1>
     <%= f.collection_select :team_id, @teams, :id, :name, include_blank: true %> <br>
      <%= f.submit "Select Team"%>
-     <% end %>
+    <% end %>
  <% end %>
  <%= link_to "Go Back", user_path(current_user)%>

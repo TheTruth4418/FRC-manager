@@ -22,9 +22,10 @@ Rails.application.routes.draw do
   get '/home', to: 'users#show'
   get '/edit_username', to: 'users#edit'
 
-  get '/join', to: 'teams#join'
-  post '/join', to: 'teams#register'
+  get '/join', to: 'users#join'
+  post '/join', to: 'users#register'
  
+  get '/auth/google_oauth2/callback' => 'sessions#omniauth' 
 
 end
 

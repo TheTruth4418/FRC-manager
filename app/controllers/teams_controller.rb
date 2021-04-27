@@ -17,7 +17,7 @@ class TeamsController < ApplicationController
       @team = current_team
       #error validation
     end
-    render "show"
+    redirect_to user_path(@user)
   end
 
   def update
@@ -36,18 +36,26 @@ class TeamsController < ApplicationController
   end
 
   def destroy
-    current_team.destroy
-  end
+    @team = current_team
+    @user = current_user
 
-  def join
-    @teams = Team.all.by_name
-  end
+    @team.events.each do |x|
+      x.participants.each do |y|
+        y.destroy
+      end
+      x.destroy
+    end
 
-  def register
-      @user = current_user
-      @user.update(:team_id => params[:team][:id])
-      @team = current_team
-      render "success"
+    @team.tasks.each do |x|
+      x.destroy
+    end
+
+    @team.users.each do |x|
+      x.update!(:team_id => nil)
+    end
+
+    @team.destroy
+    redirect_to user_path(@user)
   end
 end
 

@@ -9,7 +9,7 @@ module UsersHelper
     #end
 
     def user_params
-       params.require(:user).permit(:id,:username, :password, :admin)
+       params.require(:user).permit(:id,:username, :password, :admin, :team_id)
     end
 
     def team_params
@@ -101,5 +101,14 @@ module UsersHelper
    def find_confirm(event,user)
     confirm = Confirm.find_by(event_id: event.id, user_id: user.id)
    end
+
+  def auth
+    request.env['omniauth.auth']
+  end
+
+  def auth_username(email)
+    index = email.index('@')
+    email[0,index]
+  end
 
 end

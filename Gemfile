@@ -22,6 +22,12 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
+gem "thin", "~> 1.8"
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem "omniauth-facebook", "~> 8.0"
+gem "omniauth-rails_csrf_protection", "~> 1.0"
+gem 'dotenv-rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

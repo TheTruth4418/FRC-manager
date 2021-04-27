@@ -7,21 +7,20 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create!(user_params)
-    if @user
-      session[:user_id]=@user.id
-      redirect_to "/login"
-      flash[:notice] = 'Account created, please login!'
-    else
-    redirect_to "/signup"
-    flash[:notice] = 'Account couldnt be created, please try again.'
+    session[:user_id]=@user.id
+    redirect_to "/login"
+    flash[:notice] = 'Account created, please login!'
+    if !@user 
+      redirect_to "/signup"
+      flash[:notice] = 'Account couldnt be created, please try again.'
     end
   end
 
   def update
     @user = current_user
     @user.update(user_params)
-    redirect_to "/home"
-    flash[:notice] = 'Your Username has been successfully changed.'
+    redirect_to user_path(@user)
+    flash[:notice] = 'Admin Status has been changed.'
   end
 
   def show
@@ -36,6 +35,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_user
+    @teams = Team.all
   end
 
   def destroy
@@ -43,6 +43,18 @@ class UsersController < ApplicationController
 
   def welcome
   end
+
+  def join
+    @user = current_user
+    @teams = Team.all.by_name
+  end
+
+  def register
+      @user = current_user
+      @user.update(:team_id => params[:team][:id])
+      @team = current_team
+      @team.users.students << current_user
+      render "show"
+  end
 end
 
-# if logged in redirect to the home

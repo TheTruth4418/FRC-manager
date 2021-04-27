@@ -1,8 +1,15 @@
 <%= "Currently logged in: #{@user.username}" %>
+
+<% flash.each do |type, msg| %>
+    <div class="alert alert-info">
+      <%= msg %>
+    </div>
+  <% end %>
+
 <div>
     <h1> User Home </h1>
     <p> Username: <%= @user.username %> </p>
-    <%= link_to "Account Settings", edit_user_url(@user)%><br>
+    <%= link_to "Edit admin status", edit_user_url(@user) if @user.team_id == nil %> <br>
     <%= form_tag session_url(session[:user_id]), method: "delete" do %>
         <%= submit_tag "Log out" %>
       <% end %>
@@ -13,7 +20,11 @@
     <%if on_team?(@user) %>
         <%= link_to "#{@team.name}'s portal", team_url(@team)%>
     <%else%>
-        <%= link_to "Link a team to your account!", new_team_url%>
+        <% if @user.admin == 0 || @user.admin == nil %>
+            <%=link_to "Join Team", join_path%>
+        <%else%>
+            <%=link_to "Make Team", new_team_path%>
+        <%end%>
     <%end%>
 </div>
 

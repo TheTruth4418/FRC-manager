@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2021_04_10_141859) do
     t.integer "admin"
     t.integer "team_id"
     t.string "uid"
+    t.string "email"
     t.string "provider"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

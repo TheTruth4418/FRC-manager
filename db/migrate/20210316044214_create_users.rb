@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.integer :admin
       t.integer :team_id
       t.string :uid
+      t.string :email
       t.string :provider
 
       t.timestamps

@@ -1,6 +1,7 @@
+<h3> Until you belong to a team you may freely edit whether you are going to be an admin for a team or not!</p>
 <%= form_for(@user) do |a| %>
-    <li> <%= a.label :username %> 
-     <%= a.text_field :username %> </li>
-     <li><%= a.submit %></li>
+    <%= a.label :admin? %>
+    <%= a.check_box :admin %><br>
+    <%= a.submit%>
  <% end %>
  <a href="/home" class="page">Return Home</a>
