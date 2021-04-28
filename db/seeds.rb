@@ -17,5 +17,3 @@ User.create(username: 'student6' , password_digest: BCrypt::Password.create('221
 
 Team.create(name: 'Team1')
 Team.create(name: 'Team2')
-
-Event.create(name: 'Dallas Regional', date: '1/1/2020', location:'Conrad High School Dallas Tx', team_id: 1)

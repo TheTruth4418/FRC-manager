@@ -11,8 +11,11 @@
     <%= "Robot Complete? - #{scout(@participant.robot_status)}"%>
 </div>
 
-<%= link_to "Edit Partipant Data", edit_event_participant_url(@event,@participant)%><br>
-<%= form_tag event_participant_url(@event,@participant), method: "delete" do %>
+
+  <%= link_to "Edit Partipant Data", edit_event_participant_url(@event,@participant)%><br>
+  <% if @user.admin == 1%>
+  <%= form_tag event_participant_url(@event,@participant), method: "delete" do %>
     <%= submit_tag "Delete" %>
   <% end %>
+<%end%>
 <%= link_to "Go back", event_url(@event) %>

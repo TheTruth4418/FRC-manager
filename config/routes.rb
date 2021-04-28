@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 
   get '/join', to: 'users#join'
   post '/join', to: 'users#register'
+
+  patch '/remove', to: 'users#remove'
  
   get '/auth/google_oauth2/callback' => 'sessions#omniauth' 
 

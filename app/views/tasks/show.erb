@@ -1,9 +1,11 @@
 <%= "Task: #{@task.name}" %><br>
 <%= "Description: #{@task.description}" %><br>
-<%= "Assigned to: #{@user.username}" %><br>
+<%= "Assigned to: #{@student.username}" %><br>
 <%= "Status: #{@task.complete}" %><br>
+<% if @user.admin == 1 %>
 <%= link_to "Edit Task", edit_task_url(@task)%>
 <%= form_tag task_url(@task), method: "delete" do %>
     <%= submit_tag "Delete" %>
   <% end %>
+<%end%>
 <%= link_to "Go Back", team_url(current_team)%>

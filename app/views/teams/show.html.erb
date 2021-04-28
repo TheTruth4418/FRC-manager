@@ -8,7 +8,14 @@
     <li><%="Admin: #{@admin}"%></li>
     <% @students.each do |student| %>
         <li><%=student.username%></li>
+        <% if @user.admin == 1 %>
+          <%= form_for(student ,url: remove_path) do |a| %>
+              <%= a.hidden_field :id, :value => student.id %> 
+              <%= submit_tag "Remove" %>
+          <%end%>
+        <%end%>
     <%end%>
+    <%= link_to "Edit Team", edit_team_url(@team) if @user.admin == 1 %>
 </div>
 
 <div>
@@ -16,17 +23,17 @@
     <% @events.each do |event| %>
         <li><%=link_to "#{event.name}", event_url(event)%></li>
     <%end%>
-    <%= link_to "New Event", new_event_url %>
+    <%= link_to "New Event", new_event_url if @user.admin == 1 %>
 </div>
 
 <div>
     <h3>Tasks</h3>
     <div>
       <h5> In Progress </h5>
-      <% @tasks.each do |task| %>
+      <% @tasks.in_progress.each do |task| %>
           <li> <%=link_to "#{task.name}", task_url(task)%> </li>
       <%end%>
-      <%= link_to "New Task", new_task_url %>
+      <%= link_to "New Task", new_task_url if @user.admin == 1%>
     </div>
 
     <div>
@@ -37,6 +44,9 @@
     </div>
 </div>
 <%=link_to "Go Back", user_url(@user)%>
-<%= form_tag team_url(@team), method: "delete" do %>
-    <%= submit_tag "Delete" %>
+
+<% if @user.admin == 1 %>
+  <%= form_tag team_url(@team), method: "delete" do %>
+   <%= submit_tag "Delete" %>
   <% end %>
+<%end%>

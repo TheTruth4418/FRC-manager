@@ -1,15 +1,7 @@
-<% if current_user.admin == 1 %>
 <p> Create your team using the form below! </p>
 <%= form_for(Team.new) do |a| %>
      <%= a.label :name %>
      <%= a.text_field :name %><br>
      <%= a.submit %>
      <%end%>
-<% else %>
-<%= form_for :user do |f| %>
-    <h1> From the Dropdown menu please select your robotics team </h1>
-    <%= f.collection_select :team_id, @teams, :id, :name, include_blank: true %> <br>
-     <%= f.submit "Select Team"%>
-    <% end %>
- <% end %>
  <%= link_to "Go Back", user_path(current_user)%>

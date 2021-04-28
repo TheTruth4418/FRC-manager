@@ -4,10 +4,12 @@
     <%= "Date: #{@event.date}" %><br>
     <%= "Location: #{@event.location}" %><br>
     <br>
-    <%= link_to "Edit", edit_event_url(@event)%>
-    <%= form_tag event_url(@event), method: "delete" do %>
+    <% if @user.admin == 1 %>
+      <%= link_to "Edit", edit_event_url(@event)%>
+      <%= form_tag event_url(@event), method: "delete" do %>
         <%= submit_tag "Delete" %>
       <% end %>
+    <%end%>
   </div>
 
   <div>
@@ -19,7 +21,7 @@
           <%="#{student.username} - #{confirmed?(@event,student)}"%><br>
         <%end%>
       <%end%>
-      <%= link_to "Confirm a new student",new_event_confirm_url(@event)%>
+      <%= link_to "Confirm a new student",new_event_confirm_url(@event) if @user.admin == 1%>
   </div>
 
   <div>
@@ -27,7 +29,7 @@
     <% @participants.each do |participant| %>
         <li> <%=link_to "#{participant.name}", event_participant_url(@event,participant)%> </li>
     <%end%>
-    <%= link_to "New Participant", new_event_participant_url(@event) %><br>
+    <%= link_to "New Participant", new_event_participant_url(@event)%><br>
   </div>
 
 <%=link_to "Go Back", team_url(@team)%>

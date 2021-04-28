@@ -1,3 +1,13 @@
+<% if @task.errors.any? %>
+  <div id="error_explanation">
+    <h2>Cant create Participant:</h2>
+    <ul>
+      <% @task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<%end%>
 <p> New Task </p>
 <%= form_for [Task.new] do |a| %>
     <%= a.label :task_name%> 

@@ -1,3 +1,14 @@
+<% if @participant.errors.any? %>
+  <div id="error_explanation">
+    <h2>Cant create Participant:</h2>
+    <ul>
+      <% @participant.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<%end%>
+
 <p> New Opponent form </p>
 <%= form_for [@event, @participant] do |a| %>
     <%= a.label :team_name%> 

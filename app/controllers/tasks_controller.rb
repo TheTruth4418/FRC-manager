@@ -4,16 +4,21 @@ class TasksController < ApplicationController
 
   def new
     @team = current_team
-    @task = @team.tasks.build
+    @task = Task.new
     @students = @team.users.students
   end
 
   def create
     @team = current_team
-    @task = Task.create!(task_params)
-    @user = User.find_by_id(@task.user_id)
-    @tasks = @team.tasks
-    render "show"
+    @task = Task.new(task_params)
+    @students = @team.users.students
+    
+    if @task.valid? && @team.id == params[:task][:team_id].to_i
+      @task = Task.create!(task_params)
+      redirect_to task_path(@task)
+    else
+      render "new"
+    end
   end
 
   def update
@@ -21,13 +26,14 @@ class TasksController < ApplicationController
     @task = Task.find_by_id(params[:id])
     @task.update!(task_params)
     @user = User.find_by_id(@task.user_id)
-    render "show"
+    redirect_to task_path(@task)
   end
 
   def show
     @team = current_team
     @task = Task.find_by_id(params[:id])
-    @user = User.find_by_id(@task.user_id)
+    @user = current_user
+    @student = User.find_by_id(@task.user_id)
   end
 
   def edit

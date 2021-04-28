@@ -1,3 +1,14 @@
+<% if @event.errors.any? %>
+  <div id="error_explanation">
+    <h2>Cant create User:</h2>
+    <ul>
+      <% @event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <p> New event </p>
 <%= form_for (Event.new) do |a| %>
     <%= a.label :team_Name%> 

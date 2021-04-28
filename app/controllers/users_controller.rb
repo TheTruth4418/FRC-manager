@@ -3,17 +3,19 @@ class UsersController < ApplicationController
   include UsersHelper
 
   def new
+    @user = User.new
   end
 
   def create
-    @user = User.create!(user_params)
-    session[:user_id]=@user.id
-    redirect_to "/login"
-    flash[:notice] = 'Account created, please login!'
-    if !@user 
-      redirect_to "/signup"
-      flash[:notice] = 'Account couldnt be created, please try again.'
+    @user = User.new(user_params)
+    if @user.valid?
+      @user.save
+      redirect_to "/login"
+      flash[:notice] = 'Account created, please login!'
+    else 
+      render "new"
     end
+
   end
 
   def update
@@ -59,6 +61,12 @@ class UsersController < ApplicationController
       @team = current_team
       @team.users.students << current_user
       render "show"
+  end
+
+  def remove
+    @student = User.find_by_id(params[:user][:id])
+    @student.update!(:team_id => nil)
+    redirect_to team_path(current_team)
   end
 end
 

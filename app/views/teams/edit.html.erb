@@ -1,2 +1,6 @@
-<h1>Teams#edit</h1>
-<p>Find me in app/views/teams/edit.html.erb</p>
+<%=form_for(@team) do |a|%>
+    <%= a.label :name %>
+     <%= a.text_field :name %><br>
+     <%= a.submit %>
+<%end%>
+<%= link_to "Go back", team_path(@team) %>

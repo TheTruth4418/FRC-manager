@@ -12,7 +12,8 @@ class SessionsController < ApplicationController
           session[:user_id] = @user.id
           redirect_to "/home"
       else
-          redirect_to '/'
+        flash[:notice] = 'The credential combination is invalid please try again.'
+        render "new"
       end
   end
 
@@ -29,7 +30,6 @@ class SessionsController < ApplicationController
       u.provider = auth[:provider]
       u.password = SecureRandom.hex(10)
     end
-  
     if @user.valid?
       session[:user_id] = @user.id
       redirect_to user_path(@user)

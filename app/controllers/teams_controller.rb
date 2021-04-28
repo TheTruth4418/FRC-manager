@@ -21,6 +21,9 @@ class TeamsController < ApplicationController
   end
 
   def update
+    @team = current_team
+    @team.update(team_params)
+    redirect_to team_path(@team)
   end
 
   def show
@@ -33,6 +36,9 @@ class TeamsController < ApplicationController
   end
 
   def edit
+    @user = current_user
+    @team = current_team
+    @team.update(:name => params[:name])
   end
 
   def destroy
