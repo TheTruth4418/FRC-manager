@@ -1,6 +1,8 @@
 class TeamsController < ApplicationController
 
   include UsersHelper
+  before_action :admin_check
+  skip_before_action :admin_check, only: [:show, :index]
 
   def new
     @teams = Team.all.by_name

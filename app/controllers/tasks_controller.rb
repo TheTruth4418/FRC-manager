@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
 
   include UsersHelper
+  before_action :admin_check
+  skip_before_action :admin_check, only: [:show, :index, :edit, :update]
 
   def new
     @team = current_team

@@ -20,6 +20,20 @@ module UsersHelper
       !!session[:user_id]
     end
 
+    def login_check
+      unless logged_in?
+        flash[:notice] = "Please Log in before accessing!"
+        redirect_to "/"
+      end
+    end
+
+    def admin_check
+      unless current_user.admin == 1
+        flash[:notice] = "Admin can only access this page"
+        redirect_to user_url(current_user)
+      end
+    end
+
     def on_team?(user)
       current_user.team_id != nil 
     end

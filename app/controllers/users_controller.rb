@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   include UsersHelper
+  skip_before_action :login_check, only: [:new, :create, :welcome]
 
   def new
     @user = User.new
@@ -26,13 +27,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    if logged_in?
       @user = current_user
       @team = current_team
       @status = status(@user)
-    else
-      redirect_to "/"
-    end
   end
 
   def edit

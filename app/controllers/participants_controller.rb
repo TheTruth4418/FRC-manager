@@ -1,6 +1,7 @@
 class ParticipantsController < ApplicationController
 
   include UsersHelper
+  before_action :admin_check, only: [:destroy]
 
   def new
     @team = current_team

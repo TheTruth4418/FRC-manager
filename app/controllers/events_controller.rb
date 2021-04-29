@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
 
   include UsersHelper
+  before_action :admin_check
+  skip_before_action :admin_check, only: [:show, :index]
 
   def new
     @team = current_team

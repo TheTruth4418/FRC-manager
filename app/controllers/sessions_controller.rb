@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   include UsersHelper
+  skip_before_action :login_check, only: [:new, :create, :omniauth]
 
   def new
       
