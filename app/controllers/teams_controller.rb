@@ -5,21 +5,19 @@ class TeamsController < ApplicationController
   skip_before_action :admin_check, only: [:show, :index]
 
   def new
-    @teams = Team.all.by_name
+    @team = Team.new
   end
 
   def create
     @user = current_user
-    if status(@user) == "admin"
+    @team = Team.new(team_params)
+    if @team.valid? 
       @team = Team.create!(team_params)
       @user.update(:team_id => @team.id)
-      #error validation
+      redirect_to user_path(@user)
     else
-      @user.update(:team_id => params[:team][:id])
-      @team = current_team
-      #error validation
+      render "new"
     end
-    redirect_to user_path(@user)
   end
 
   def update
@@ -66,11 +64,3 @@ class TeamsController < ApplicationController
     redirect_to user_path(@user)
   end
 end
-
-# @team.users pulls up all the users for the team
-# Admin CRUD team students R team
-# Events can be viewed by the students however admin can create an event
-# Admin can fully CRUD a task but a student can only update and read a task
-# Admins can CRUD Opponents, Users can RU opponents scout reports
-# Confirms are CRUD by admins while students can CRU a confirm, confirming their event participation
-# change the url names later on

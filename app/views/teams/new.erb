@@ -1,7 +1,19 @@
+<% if @team.errors.any? %>
+ <div id="error_explanation">
+  <h2>Cant create Team:</h2>
+  <ul>
+   <% @team.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+   <% end %>
+  </ul>
+ </div>
+<% end %> 
+
 <p> Create your team using the form below! </p>
 <%= form_for(Team.new) do |a| %>
-     <%= a.label :name %>
-     <%= a.text_field :name %><br>
-     <%= a.submit %>
-     <%end%>
- <%= link_to "Go Back", user_path(current_user)%>
+ <%= a.label :name %>
+ <%= a.text_field :name %><br>
+ <%= a.submit %>
+<%end%>
+ 
+<%= link_to "Go Back", user_path(current_user)%>

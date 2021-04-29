@@ -1,48 +1,50 @@
 <div>
-    <h3> <%= "#{@team.name}'s portal" %> </h3>
-    <%= link_to "User Portal", home_url %>
+ <h3> <%= "#{@team.name}'s portal" %> </h3>
+ <%= link_to "User Portal", home_url %>
 </div>
 
 <div>
-    <h3> <%="Roster:"%> </h3>
-    <li><%="Admin: #{@admin}"%></li>
-    <% @students.each do |student| %>
-        <li><%=student.username%></li>
-        <% if @user.admin == 1 %>
-          <%= form_for(student ,url: remove_path) do |a| %>
-              <%= a.hidden_field :id, :value => student.id %> 
-              <%= submit_tag "Remove" %>
-          <%end%>
-        <%end%>
+ <h3> <%="Roster:"%> </h3>
+ <li><%="Admin: #{@admin}"%></li>
+
+ <% @students.each do |student| %>
+  <li><%=student.username%></li>
+  <% if @user.admin == 1 %>
+     <%= form_for(student ,url: remove_path) do |a| %>
+         <%= a.hidden_field :id, :value => student.id %> 
+         <%= submit_tag "Remove" %>
+     <%end%>
     <%end%>
-    <%= link_to "Edit Team", edit_team_url(@team) if @user.admin == 1 %>
+ <%end%>
+
+<%= link_to "Edit Team", edit_team_url(@team) if @user.admin == 1 %>
 </div>
 
 <div>
-    <h3> Events </h3>
-    <% @events.each do |event| %>
-        <li><%=link_to "#{event.name}", event_url(event)%></li>
-    <%end%>
-    <%= link_to "New Event", new_event_url if @user.admin == 1 %>
+<h3> Events </h3>
+<% @events.each do |event| %>
+    <li><%=link_to "#{event.name}", event_url(event)%></li>
+<%end%>
+<%= link_to "New Event", new_event_url if @user.admin == 1 %>
 </div>
 
 <div>
-    <h3>Tasks</h3>
-    <div>
-      <h5> In Progress </h5>
-      <% @tasks.in_progress.each do |task| %>
-          <li> <%=link_to "#{task.name}", task_url(task)%> </li>
-      <%end%>
-      <%= link_to "New Task", new_task_url if @user.admin == 1%>
-    </div>
-
-    <div>
-        <h5> Complete </h5>
-        <% @tasks.completed.each do |task| %>
-            <li> <%=link_to "#{task.name}", task_url(task)%> </li>
-        <%end%>
-    </div>
+<h3>Tasks</h3>
+<div>
+ <h5> In Progress </h5>
+ <% @tasks.in_progress.each do |task| %>
+     <li> <%=link_to "#{task.name}", task_url(task)%> </li>
+ <%end%>
+ <%= link_to "New Task", new_task_url if @user.admin == 1%>
 </div>
+
+<div>
+ <h5> Complete </h5>
+ <% @tasks.completed.each do |task| %>
+     <li> <%=link_to "#{task.name}", task_url(task)%> </li>
+ <%end%>
+</div>
+
 <%=link_to "Go Back", user_url(@user)%>
 
 <% if @user.admin == 1 %>
