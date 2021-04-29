@@ -16,7 +16,6 @@ class UsersController < ApplicationController
     else 
       render "new"
     end
-
   end
 
   def update
@@ -27,9 +26,9 @@ class UsersController < ApplicationController
   end
 
   def show
-      @user = current_user
-      @team = current_team
-      @status = status(@user)
+    @user = current_user
+    @team = current_team
+    @status = status(@user)
   end
 
   def edit
@@ -53,11 +52,9 @@ class UsersController < ApplicationController
   end
 
   def register
-      @user = current_user
-      @user.update(:team_id => params[:team][:id])
-      @team = current_team
-      @team.users.students << current_user
-      render "show"
+    @user = current_user
+    @user.update(:team_id => params[:team][:id])
+    redirect_to user_path(@user)
   end
 
   def remove

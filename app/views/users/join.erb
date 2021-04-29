@@ -1,5 +1,6 @@
 <%= form_for(@user) do |f| %>
-<%= f.collection_select :team_id, @teams, :id, :name, include_blank: true %> <br>
-<%= f.submit "Select Team"%>
+ <%= f.collection_select :team_id, @teams, :id, :name, include_blank: true %> <br>
+ <%= f.submit "Select Team"%>
 <%end%>
-<a href="/home" class="page">Return Home</a>
+
+<%= link_to "Go back", user_url(@user)%>

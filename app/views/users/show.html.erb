@@ -1,40 +1,40 @@
 <%= "Currently logged in: #{@user.username}" %>
 
 <% flash.each do |type, msg| %>
-    <div class="alert alert-info">
-      <%= msg %>
-    </div>
-  <% end %>
+ <div class="alert alert-info">
+  <%= msg %>
+ </div>
+<% end %>
 
 <div>
-    <h1> User Home </h1>
-    <p> Username: <%= @user.username %> </p>
-    <%= link_to "Edit admin status", edit_user_url(@user) if @user.team_id == nil %> <br>
-    <%= form_tag session_url(session[:user_id]), method: "delete" do %>
-        <%= submit_tag "Log out" %>
-      <% end %>
+ <h1> User Home </h1>
+ <p> Username: <%= @user.username %> </p>
+ <%= link_to "Edit admin status", edit_user_url(@user) if @user.team_id == nil %> <br>
+ <%= form_tag session_url(session[:user_id]), method: "delete" do %>
+  <%= submit_tag "Log out" %>
+ <% end %>
 </div>
 
 <div> 
-    <h3> Your Team </h3>
-    <%if on_team?(@user) %>
-        <%= link_to "#{@team.name}'s portal", team_url(@team)%>
-    <%else%>
-        <% if @user.admin == 0 || @user.admin == nil %>
-            <%=link_to "Join Team", join_path%>
-        <%else%>
-            <%=link_to "Make Team", new_team_path%>
-        <%end%>
-    <%end%>
+ <h3> Your Team </h3>
+ <%if on_team?(@user) %>
+  <%= link_to "#{@team.name}'s portal", team_url(@team)%>
+ <%else%>
+  <% if @user.admin == 0 || @user.admin == nil %>
+   <%=link_to "Join Team", join_path%>
+  <%else%>
+   <%=link_to "Make Team", new_team_path%>
+  <%end%>
+ <%end%>
 </div>
 
 <div>
-    <h3> Tasks </h3>
-    <% if @user.tasks.length != 0 %>
-        <%@user.tasks.each do |task|%>
-            <li> <%= link_to "#{task.name}", task_url(task)%> </li>
-        <%end%>
-    <%else%>
-        <p> No tasks at the moment </p>
-    <%end%>
+ <h3> Tasks </h3>
+ <% if @user.tasks.length != 0 %>
+  <%@user.tasks.each do |task|%>
+   <li> <%= link_to "#{task.name}", task_url(task)%> </li>
+  <%end%>
+ <%else%>
+  <p> No tasks at the moment </p>
+ <%end%>
 </div>

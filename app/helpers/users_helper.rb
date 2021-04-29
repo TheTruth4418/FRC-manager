@@ -2,12 +2,7 @@ module UsersHelper
   def current_user
       @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
     end 
-
-    #def require_login
-     # if !logged_in?
-     # redirect_to login_path
-    #end
-
+    
     def user_params
        params.require(:user).permit(:id,:username, :password, :admin, :team_id)
     end
