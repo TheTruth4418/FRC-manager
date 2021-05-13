@@ -1,0 +1,17 @@
+body {
+    background-image: url(/assets/FRC_logo.png);
+    background-repeat : no-repeat;
+    background-attachment: fixed ;
+    background-size: 100% 120%;
+}
+
+.actions, a {
+    color: black;
+    display: inline-block;
+}
+
+.welcome {
+    text-align: center;
+    color: red;
+}
+

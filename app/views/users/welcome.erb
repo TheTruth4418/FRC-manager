@@ -1,9 +1,11 @@
-<div>
+<%= stylesheet_link_tag 'welcome', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+<div class="welcome">
  <h1> Welcome to FRC Team Manager!</h1>
 </div>
 
-<div>
- <%= link_to "Sign Up", new_user_url %> <br>
+<div class="actions">
+ <%= link_to "Sign Up", new_user_url %><br>
  <%= link_to "Log in with Google!", "/auth/google_oauth2" , method: "post" %><br>
  <%= link_to "Log in", new_session_url %>
-<div>
+</div>

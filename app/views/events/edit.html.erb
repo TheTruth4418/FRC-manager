@@ -1,22 +1,23 @@
 <% if @event.errors.any? %>
-  <div id="error_explanation">
-    <h2>Cant create User:</h2>
-    <ul>
-      <% @event.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
+ <div id="error_explanation">
+  <h2>Cant create User:</h2>
+  <ul>
+   <% @event.errors.full_messages.each do |message| %>
+     <li><%= message %></li>
+   <% end %>
+  </ul>
+ </div>
 <% end %>
+
 <p> Edit Event </p>
 <%= form_for (@event) do |a| %>
-    <%= a.label :team_Name%> 
-     <%= a.text_field :name%><br>
-     <%= a.label :date%>
-     <%= a.text_field :date%><br>
-     <%= a.label :location%>
-     <%= a.text_field :location%> <br>
-     <%= a.hidden_field :team_id, :value => @team.id %> 
-     <%= a.submit %>
-     <%end%>
+<%= a.label :team_Name%> 
+  <%= a.text_field :name%><br>
+  <%= a.label :date%>
+  <%= a.text_field :date%><br>
+  <%= a.label :location%>
+  <%= a.text_field :location%> <br>
+  <%= a.hidden_field :team_id, :value => @team.id %> 
+  <%= a.submit %>
+  <%end%>
 <%= link_to "Go Back", event_url(@event) %>
