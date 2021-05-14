@@ -5,18 +5,23 @@ class ConfirmsController < ApplicationController
   skip_before_action :admin_check, only: [:show]
 
   def new
-    @user = current_user
     @team = current_team
     @event = Event.find_by_id(params[:event_id])
     @students = @team.users.students
+    @confirm = Confirm.new
   end
 
   def create
-    @user = current_user
     @team = current_team
     @event = Event.find_by_id(params[:event_id])
-    @confirm = Confirm.create!(confirm_params)
-    redirect_to event_path(@event)
+    @confirm = Confirm.new(confirm_params)
+    if params[:confirm][:event_id].to_i == @event.id && @confirm.valid?
+      @confirm.save
+      redirect_to event_path(@event)
+    else
+      @students = @team.users.students
+      render "new"
+    end
   end
 
   def update
@@ -30,14 +35,6 @@ class ConfirmsController < ApplicationController
     @user = @confirm.user
     @team = current_team
     @event = @confirm.event
-  end
-
-  def index
-    @user = current_user
-    @team = current_team
-    @events = @team.events
-    @event = Event.find_by_id(params[:event_id])
-    @confirms = @event.confirms
   end
 
   def show
