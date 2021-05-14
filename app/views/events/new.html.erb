@@ -11,13 +11,6 @@
 
 <p> New event </p>
 <%= form_for (Event.new) do |a| %>
-    <%= a.label :team_Name%> 
-     <%= a.text_field :name%><br>
-     <%= a.label :date%>
-     <%= a.text_field :date%><br>
-     <%= a.label :location%>
-     <%= a.text_field :location%> <br>
-     <%= a.hidden_field :team_id, :value => @team.id %> 
-     <%= a.submit %>
-     <%end%>
+    <%= render 'form', a: a%>
+  <%end%>
 <%= link_to "Go back", team_path(@team)%>

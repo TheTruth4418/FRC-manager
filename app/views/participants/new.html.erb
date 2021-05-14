@@ -11,19 +11,6 @@
 
 <p> New Opponent form </p>
 <%= form_for [@event, @participant] do |a| %>
-    <%= a.label :team_name%> 
-    <%= a.text_field :name%><br>
-    <%= a.label :team_number%>
-    <%= a.text_field :team_number%><br>
-    <%= a.hidden_field :event_id, :value => @event.id %>
-    <%= a.label :Robot_status? %>
-    <%= a.check_box :robot_status %><br>
-    <%= a.label :Scoring? %>
-    <%= a.check_box :scoring %><br>
-    <%= a.label :climbing %>
-    <%= a.check_box :climbing? %><br>
-    <%= a.label :Autonomous_Summary %><br>
-    <%= a.text_area :autonomous%><br>
-    <%= a.submit %>
+    <%= render 'form', a: a%>
 <%end%>
 <%= link_to "Go Back", event_url(@event) %>
