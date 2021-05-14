@@ -1,7 +1,7 @@
 class ConfirmsController < ApplicationController
 
   include UsersHelper
-  before_action :admin_check
+  before_action :admin_check, :students_check
   skip_before_action :admin_check, only: [:show]
 
   def new

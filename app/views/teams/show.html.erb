@@ -1,3 +1,9 @@
+<% flash.each do |type, msg| %>
+    <div class="alert alert-info">
+      <%= msg %>
+    </div>
+   <% end %>
+
 <div>
  <h3> <%= "#{@team.name}'s portal" %> </h3>
  <%= link_to "User Portal", home_url %>

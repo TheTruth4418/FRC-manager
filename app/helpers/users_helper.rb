@@ -22,6 +22,13 @@ module UsersHelper
       end
     end
 
+    def students_check
+      unless current_team.users.students.length > 0
+        flash[:notice]= "Cannot make a confirm without students on file!"
+        redirect_to team_path(current_team)
+      end
+    end
+
     def admin_check
       unless current_user.admin == 1
         flash[:notice] = "Admin can only access this page"

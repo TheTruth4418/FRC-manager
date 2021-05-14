@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
-  resources :users
+  resources :users, only: [:new, :create, :edit, :update, :show, :destroy]
   resources :teams, only: [:new, :create, :edit, :update, :show, :destroy]
-  resources :tasks
+  resources :tasks, only: [:new, :create, :edit, :update, :show, :destroy]
   resources :events do
-    resources :confirms
-    resources :participants
+    resources :confirms, only: [:new, :create, :edit, :update, :show, :destroy]
+    resources :participants, only: [:new, :create, :edit, :update, :show, :destroy]
   end
   resources :sessions, only: [:new,:create,:destroy]
 
